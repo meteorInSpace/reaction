@@ -302,6 +302,10 @@ export const Shop = new SimpleSchema({
     type: String,
     defaultValue: "active"
   },
+  "catalogMode": {
+    type: Boolean,
+    defaultValue: false
+  },
   "name": {
     type: String,
     index: 1

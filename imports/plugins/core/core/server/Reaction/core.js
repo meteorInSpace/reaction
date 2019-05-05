@@ -366,6 +366,41 @@ export default {
   },
 
   /**
+   * @name isShopInCatalogMode
+   * @summary Whether the current shop is in catalog mode
+   * @method
+   * @memberof Core
+   * @return {Boolean} whether shop is flagged to be in catalog mode
+   */
+  isShopInCatalogMode() {
+    const shop = Shops.find({
+      _id: this.getShopId()
+    }, {
+      limit: 1,
+      fields: {
+        catalogMode: 1
+      }
+    }).fetch()[0];
+
+    return shop.catalogMode;
+  },
+
+  /**
+   * @name isPrimaryShopInCatalogMode
+   * @summary Whether the primary shop is in catalog mode
+   * @method
+   * @memberof Core
+   * @return {Boolean} whether primary shop is flagged to be in catalog mode
+   */
+  isPrimaryShopInCatalogMode() {
+    const primaryShop = this.getPrimaryShop();
+
+    if(!primaryShop) { return null; }
+
+    return primaryShop.catalogMode;
+  },
+
+  /**
    * @summary **DEPRECATED** This method has been deprecated in favor of using getShopId
    * and getPrimaryShopId. To be removed.
    * @deprecated
